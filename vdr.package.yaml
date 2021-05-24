@@ -26,6 +26,9 @@ resources:
         - name: stabilityscore
           type: number
           description: Experimental stability score of the protein
+      primaryKey:
+        - dataset
+        - name
   - name: trypsin_counts
     path: data/trypsin_counts.csv
     description: FACS counts vs trypsin concentration
@@ -59,3 +62,6 @@ resources:
         - name: counts3_t
           type: number
           description: FACS counts at highest concentration of trypsin
+      primaryKey:
+        - dataset
+        - name

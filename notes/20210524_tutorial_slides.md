@@ -127,7 +127,6 @@ resources:
 As expected, this schema fails validation (`f validate vdr.table.yaml`), and we modify the schema to accommodate the new fields:
 
 ```yaml
-# ...
 resources:
   - name: stab_scores
     # ...
@@ -171,7 +170,7 @@ Schemas support a handful of field constraints, notably:
 - `unique`
 - Maximum / minimum allowed values
 - Regular expression matching
-- Full list at https://specs.frictionlessdata.io/table-schema/#constraints
+- Full specification at https://specs.frictionlessdata.io/table-schema/#constraints
 
 Let's try adding a couple of (failing) constraints on fields `name` and `counts2_t`:
 
@@ -207,7 +206,25 @@ Two steps involved in defining a relationship:
 1. Add `primaryKey` for both tables
 2. Map `primaryKey` in the lookup table (`stab_scores` here) to a `foreignKey` in the other table (`trypsin_counts`)
 
-# Frequent Pain Points
+Full specification available at https://specs.frictionlessdata.io/table-schema/#primary-key
+
+## `step-4` continued
+
+`primaryKey`s, which must be unique and non-null, are defined in our Data Package like:
+
+```yaml
+resources:
+  - name: stab_scores
+    path: data/trypsin_counts.csv
+    schema:
+      fields:
+      # ...
+      primaryKey:
+        - dataset
+        - name
+```
+
+# Common Pain Points
 
 ## Data Resource is missing a field (`step-5`)
 
