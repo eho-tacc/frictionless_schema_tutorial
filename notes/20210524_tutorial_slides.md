@@ -163,14 +163,49 @@ $ f validate vdr.package.yaml
 # -----
 ```
 
-## Adding Tabular Relations (`step-3`)
+## Adding a Simple Constraint (`step-3`)
+
+Schemas support a handful of field constraints, notably:
+
+- `required`
+- `unique`
+- Maximum / minimum allowed values
+- Regular expression matching
+- Full list at https://specs.frictionlessdata.io/table-schema/#constraints
+
+Let's try adding a couple of (failing) constraints on fields `name` and `counts2_t`:
+
+```yaml
+- name: name
+  type: string
+  description: Name of the protein design
+  constraints:
+    pattern: '^.+sequence.+$'
+# ...
+- name: counts2_t
+  type: number
+  description: FACS counts at high concentration of trypsin
+  constraints:
+    maximum: 300.0
+```
+
+Validation fails as expected:
+
+```bash
+$ f validate vdr.table.yaml
+# ...
+constraint-error  The cell "EEHEE_rd1_0043" in row at position "2" and field "name" at position "2" does not conform to a constraint: constraint "pattern" is "^.*sequence.*$"
+constraint-error  The cell "534.0" in row at position "3" and field "counts2_t" at position "5" does not conform to a constraint: constraint "maximum" is "300.0"             
+constraint-error  The cell "359.0" in row at position "7" and field "counts2_t" at position "5" does not conform to a constraint: constraint "maximum" is "300.0" 
+```
+
+
+## Adding Tabular Relations (`step-4`)
 
 Two steps involved in defining a relationship:
 
 1. Add `primaryKey` for both tables
 2. Map `primaryKey` in the lookup table (`stab_scores` here) to a `foreignKey` in the other table (`trypsin_counts`)
-
-## Adding a Simple Constraint (`step-4`)
 
 # Frequent Pain Points
 
