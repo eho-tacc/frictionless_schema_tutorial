@@ -1,0 +1,21 @@
+tasks:
+  - type: resource
+    source: data/more_stab_scores.csv
+    steps:
+      - code: cell-replace
+        # description: foo
+        fieldName: name
+        pattern: 'EEHEE_rd1_0043'
+        replace: 'EEHEE_rd1_0043_rep2'
+      # - code: cell-replace
+      #   fieldName: population
+      #   pattern: 'n/a'
+      #   replace: '67'
+      # - code: row-filter
+      #   formula: population
+      # - code: field-update
+      #   name: neighbor_id
+      #   type: integer
+      # - code: table-normalize
+      - code: table-write
+        path: data/more_stab_scores.csv
