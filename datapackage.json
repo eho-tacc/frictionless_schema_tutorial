@@ -10,7 +10,7 @@
     "resources": [
         {
             "path": "data/TwoSix_100K.csv",
-            "schema": "schemas/stab_scores.json",
+            "schema": {},
             "name": "stab_scores",
             "profile": "tabular-data-resource",
             "encoding": "utf-8",
