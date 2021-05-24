@@ -1,174 +1,20 @@
 {
     "name": "sd2e/protein_stability",
-    "created": "2021-01-04T19:17:36.799628Z",
     "keywords": [
-        "protein stability"
+        "protein stability",
+        "toy"
     ],
     "version": "1",
-    "contributors": [
-        "Ethan Ho"
-    ],
-    "image": "",
+    "contributors": ["Ethan Ho"],
     "profile": "data-package",
-    "_datasets": {
-        "updated": "2021-01-08T16:00:21.146564Z",
-        "signature": "5730bb4e95b3113f56f2f8270b0f55e8"
-    },
     "resources": [
         {
-            "path": "data/index.csv",
-            "stats": {
-                "hash": "53b5736013faa5d4882cf67e4b0282ed",
-                "bytes": 4750324,
-                "fields": 2,
-                "rows": 98982
-            },
-            "control": {
-                "newline": ""
-            },
-            "encoding": "utf-8",
-            "dialect": {
-                "commentChar": "#"
-            },
-            "schema": "schemas/index.json",
-            "name": "index",
-            "profile": "tabular-data-resource",
-            "scheme": "file",
-            "format": "csv",
-            "hashing": "md5",
-            "compression": "no",
-            "compressionPath": "",
-            "query": {}
-        },
-        {
-            "path": "data/base_ladder.csv",
-            "stats": {
-                "hash": "58a81f85f03c85ce10b8769c27af2af4",
-                "bytes": 907397,
-                "fields": 7,
-                "rows": 16534
-            },
-            "control": {
-                "newline": ""
-            },
-            "encoding": "utf-8",
-            "dialect": {
-                "commentChar": "#"
-            },
-            "schema": "schemas/base_ladder.json",
-            "name": "base_ladder",
-            "profile": "tabular-data-resource",
-            "scheme": "file",
-            "format": "csv",
-            "hashing": "md5",
-            "compression": "no",
-            "compressionPath": "",
-            "query": {}
-        },
-        {
             "path": [
-                "data/ladder.csv"
-            ],
-            "stats": {
-                "hash": "7c758aebd4ab0286105712752d6a56b6",
-                "bytes": 123215,
-                "fields": 8,
-                "rows": 1089
-            },
-            "control": {
-                "newline": ""
-            },
-            "encoding": "utf-8",
-            "dialect": {
-                "commentChar": "#"
-            },
-            "schema": "schemas/ladder.json",
-            "name": "ladder",
-            "profile": "tabular-data-resource",
-            "format": "csv",
-            "hashing": "md5",
-            "compression": "no",
-            "compressionPath": "",
-            "query": {}
-        },
-        {
-            "path": "data/ladder_index.csv",
-            "stats": {
-                "hash": "713d3da1894ad9864a8fea9e06f24ad8",
-                "bytes": 24623,
-                "fields": 2,
-                "rows": 1089
-            },
-            "encoding": "utf-8",
-            "dialect": {
-                "commentChar": "#"
-            },
-            "schema": "schemas/ladder_index.json",
-            "name": "ladder_index",
-            "profile": "tabular-data-resource",
-            "scheme": "file",
-            "format": "csv",
-            "hashing": "md5",
-            "compression": "no",
-            "compressionPath": "",
-            "query": {}
-        },
-        {
-            "path": [
-                "data/stab_scores/100K_winter19.v3.experimental_stability_scores_normalized_0.csv",
-                "data/stab_scores/100K_winter19.v3.experimental_stability_scores_normalized_1.csv",
-                "data/stab_scores/181114_Benjamin_NTF2.experimental_stability_scores_normalized.csv",
-                "data/stab_scores/181114_IL_binders_FS.v2.experimental_stability_scores_normalized.csv",
-                "data/stab_scores/Eva1_scrambled_controls.v3.experimental_stability_scores_normalized.csv",
-                "data/stab_scores/Eva2_scrambled_controls.v3.experimental_stability_scores_normalized.csv",
-                "data/stab_scores/Longxing_scrambled_controls.v3.experimental_stability_scores_normalized.csv",
-                "data/stab_scores/Rocklin_display_vector_2.rd4.experimental_stability_scores_normalized.csv",
-                "data/stab_scores/Rocklin_scrambled_controls_display_vector_2.rd4.experimental_stability_scores_normalized.csv",
-                "data/stab_scores/TwoSix_100K.v4.experimental_stability_scores_normalized_0.csv",
-                "data/stab_scores/TwoSix_100K.v4.experimental_stability_scores_normalized_1.csv",
-                "data/stab_scores/optE1.v2.experimental_stability_scores_normalized.csv",
-                "data/stab_scores/optE1_scrambled_controls.experimental_stability_scores_normalized.csv",
-                "data/stab_scores/topology_mining_and_Longxing_all_chips.experimental_stability_scores_normalized.csv",
-                "data/stab_scores/topology_mining_rd2.experimental_stability_scores_normalized.csv"
+                "data/TwoSix_100K.csv"
             ],
             "schema": "schemas/stab_scores.json",
-            "name": "stab_scores",
-            "profile": "tabular-data-resource",
-            "stats": {
-                "hash": "64ce7c80d469107d9c9dc5eb971ea67a",
-                "bytes": 590245115,
-                "fields": 131,
-                "rows": 493019
-            },
-            "encoding": "utf-8",
-            "dialect": {
-                "commentChar": "#"
-            },
-            "format": "csv",
-            "hashing": "md5",
-            "compression": "no",
-            "compressionPath": "",
-            "query": {}
-        },
-        {
-            "path": [
-                "data/stab_scores_legacy/Eva1.v7.experimental_stability_scores_normalized.csv",
-                "data/stab_scores_legacy/Eva2.v7.experimental_stability_scores_normalized.csv",
-                "data/stab_scores_legacy/Inna.v7.experimental_stability_scores_normalized.csv",
-                "data/stab_scores_legacy/Longxing.v10.experimental_stability_scores_normalized.csv",
-                "data/stab_scores_legacy/Rocklin.scrambled.experimental_stability_scores.v2_normalized.csv",
-                "data/stab_scores_legacy/Rocklin.v6.experimental_stability_scores_normalized.csv",
-                "data/stab_scores_legacy/Rocklin_ssm_stability_scores.experimental_stability_scores_normalized.csv"
-            ],
-            "schema": "schemas/stab_scores_legacy.json",
             "name": "stab_scores_legacy",
             "profile": "tabular-data-resource",
-            "stats": {
-                "hash": "75e7f288d1f8eba1f143938aa3edd26f",
-                "bytes": 42087364,
-                "fields": 46,
-                "rows": 129397
-            },
             "encoding": "utf-8",
             "dialect": {
                 "commentChar": "#"
