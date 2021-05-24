@@ -43,8 +43,8 @@ resources:
         - name: name
           type: string
           description: Name of the protein design
-          constraints:
-            pattern: '^.*sequence.*$'
+          # constraints:
+          #   pattern: '^.*sequence.*$'
         - name: counts0_t
           type: number
           description: FACS counts at lowest concentration of trypsin
@@ -54,8 +54,8 @@ resources:
         - name: counts2_t
           type: number
           description: FACS counts at high concentration of trypsin
-          constraints:
-            maximum: 300.0
+          # constraints:
+          #   maximum: 300.0
         - name: counts3_t
           type: number
           description: FACS counts at highest concentration of trypsin
