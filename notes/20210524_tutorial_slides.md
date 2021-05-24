@@ -38,10 +38,32 @@ Approach is similar to test-driven development (TDD) for software
 
 ## Anatomy of a Data Package
 
+Minimum viable Data Package contains just two files: data and metadata
 ```bash
 cat vdr.table.yaml
 cat data/stab_scores.csv
 ```
 
 ## Write a Simple Schema (`step-1`)
+
+## Adding Tabular Relations (`step-2`)
+
+## Adding a Simple Constraint (`step-3`)
+
+# Frequent Pain Points
+
+## Data Resource is missing a field
+
+## Data Resource column order is different from schema's
+
+## Data Resource column order is different from schema's
+
+# Misc. Useful Features
+
+## JSON instead of YAML
+
+## Python API
+
+
+
 
