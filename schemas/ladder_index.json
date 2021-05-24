@@ -1,0 +1,15 @@
+{
+    "primaryKey": ["dataset", "name"],
+    "fields": [
+        {
+            "name": "dataset"
+        },
+        {
+            "name": "name",
+            "type": "string",
+            "constraints": {
+                "unique": true
+            }
+        }
+    ]
+}
