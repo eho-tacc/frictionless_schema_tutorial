@@ -8,7 +8,6 @@ keywords:
 profile: data-package
 resources:
   - name: stab_scores
-    compression: 'no'
     path: data/stab_scores.csv
     dialect:
       commentChar: '#'
