@@ -9,11 +9,9 @@
     "profile": "data-package",
     "resources": [
         {
-            "path": [
-                "data/TwoSix_100K.csv"
-            ],
+            "path": "data/TwoSix_100K.csv",
             "schema": "schemas/stab_scores.json",
-            "name": "stab_scores_legacy",
+            "name": "stab_scores",
             "profile": "tabular-data-resource",
             "encoding": "utf-8",
             "dialect": {
@@ -21,9 +19,7 @@
             },
             "format": "csv",
             "hashing": "md5",
-            "compression": "no",
-            "compressionPath": "",
-            "query": {}
+            "compression": "no"
         }
     ]
 }
