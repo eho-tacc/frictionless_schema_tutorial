@@ -15,6 +15,23 @@
 - Ethan's Frictionless prototypes of Data Converge outputs: https://github.com/eho-tacc/dc_frictionless_prototypes
 - Ethan's Frictionless prototypes of Versioned Datasets: https://github.com/eho-tacc/vdr_frictionless_prototypes
 
+## Iterative Data Validation
+
+Approach is similar to test-driven development (TDD) for software
+
+1. Add data or enrich schema
+2. Test (`f validate vdr.table.yaml`) fails
+3. Transform data
+4. `f validate vdr.table.yaml` passes
+5. Repeat
+
+## Install Frictionless CLI
+
+```bash
+python3 -m pip install --user frictionless
+frictionless --help
+```
+
 ## Setting Up Tutorial Repository
 
 ```bash
@@ -29,31 +46,30 @@ git checkout step-0
 alias f=frictionless
 ```
 
-"What did he do in that slide again?..."
+"What did he do on that slide again?..."
 
 ```bash
 git diff 'step-0..step-1'
 ```
 
-## Iterative Data Validation
-
-Approach is similar to test-driven development (TDD) for software
-
-1. Add data or enrich schema
-2. Test (`f validate vdr.table.yaml`) fails
-3. Transform data
-4. `f validate vdr.table.yaml` passes
-5. Repeat
-
 ## Anatomy of a Data Package
 
 Minimum viable Data Package contains just two files: data and metadata
+
 ```bash
-cat vdr.table.yaml
 cat data/stab_scores.csv
+cat vdr.table.yaml
 ```
 
 ## Writing a Simple Schema (`step-1`)
+
+```yaml
+# ...
+resources:
+  # ...
+  - schema:
+      primaryKey: {}
+```
 
 ## Adding Tabular Relations (`step-2`)
 
