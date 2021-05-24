@@ -1,0 +1,7 @@
+,dataset,name,stabilityscore
+0,TwoSix_100K,EEHEE_rd1_0043,0.5838892628445884
+1,TwoSix_100K,EEHEE_rd1_0043_sequence_cycled_10,0.3803019114916949
+2,TwoSix_100K,EEHEE_rd1_0043_sequence_cycled_20,-0.0672930325268863
+3,TwoSix_100K,EEHEE_rd1_0043_sequence_cycled_30,0.3943630321839566
+4,TwoSix_100K,EEHEE_rd1_0043_sequence_cycled_40,0.5465952614451239
+5,TwoSix_100K,EEHEE_rd1_0043_sequence_deletions,0.2220534013376765
