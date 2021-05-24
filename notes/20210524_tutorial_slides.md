@@ -20,9 +20,9 @@
 Approach is similar to test-driven development (TDD) for software
 
 1. Add data or enrich schema
-2. Test (`f validate vdr.table.yaml`) fails
+2. Test (`frictionless validate vdr.table.yaml`) fails
 3. Transform data
-4. `f validate vdr.table.yaml` passes
+4. `frictionless validate vdr.table.yaml` passes
 5. Repeat
 
 ## Install Frictionless CLI
