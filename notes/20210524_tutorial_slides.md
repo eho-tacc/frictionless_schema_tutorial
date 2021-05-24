@@ -81,15 +81,17 @@ resources:
           description: Experimental stability score of the protein
 ```
 
-## Adding Tabular Relations (`step-2`)
+## Adding more data (`step-2`)
 
-## Adding a Simple Constraint (`step-3`)
+## Adding Tabular Relations (`step-3`)
+
+## Adding a Simple Constraint (`step-4`)
 
 # Frequent Pain Points
 
-## Data Resource is missing a field (`step-4`)
+## Data Resource is missing a field (`step-5`)
 
-## Data Resource column order is different from schema's (`step-5`)
+## Data Resource column order is different from schema's (`step-6`)
 
 # Misc. Useful Features
 
@@ -102,6 +104,8 @@ jq . datapackage.json
 # or
 cat datapackage.json
 ```
+
+## Validate via hash
 
 ## Python API
 
