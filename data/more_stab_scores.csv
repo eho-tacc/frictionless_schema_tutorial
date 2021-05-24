@@ -1,3 +1,3 @@
-dataset,name
-TwoSix_100K,EEHEE_rd1_0043
-TwoSix_100K,EEHEE_rd1_0043_another1
+dataset,name,sequence
+TwoSix_100K,EEHEE_rd1_0043,EEHEE
+TwoSix_100K,EEHEE_rd1_0043_another1,EEHEE

@@ -258,11 +258,64 @@ resources:
 
 # Common Pain Points
 
-## Data Resource is missing a field (`step-5`)
+## Appending data to a Data Resource (`step-5`)
+
+The following Package definition would concatenate two CSV files. This allows one to describe multiple physical files using a single schema. 
+
+```yaml
+resources:
+  - name: stab_scores
+    path:
+      - data/stab_scores.csv
+      - data/more_stab_scores.csv
+```
+
+## `step-5` continued
+
+This fails validation and provides some informative error messages:
+
+```bash
+$ f validate vdr.package.yaml
+# -------
+# invalid: ['data/stab_scores.csv', 'data/more_stab_scores.csv']
+# -------
+
+===  =====  =================  ==================================================================================
+row  field  code               message                                                                           
+===  =====  =================  ==================================================================================
+  8      3  type-error         Type error in the cell "EEHEE" in row "8" and field "stabilityscore" at position "3": type is "number/default"
+  8         primary-key-error  Row at position "8" violates the primary key: the same as in the row at position 2                            
+  9      3  type-error         Type error in the cell "EEHEE" in row "9" and field "stabilityscore" at position "3": type is "number/default"
+===  =====  =================  ==================================================================================
+```
+
+## `step-5` continued
+
+If we look at the physical CSV file, we can see why:
+
+```bash
+$ cat data/more_stab_scores.csv
+dataset,name,sequence
+TwoSix_100K,EEHEE_rd1_0043,EEHEE
+TwoSix_100K,EEHEE_rd1_0043_another1,EEHEE
+```
+
+There are three errors here:
+
+1. The value `EEHEE_rd1_0043` already appears in `data/stab_scores.csv`, resulting in a non-unique primaryKey error. 
+2. `more_stab_scores.csv` is missing cells for field `stabilityscore`. 
+3. `more_stab_scores.csv` has a field `sequence` that is not defined in the schema.
+
+## `step-5` continued: Pipelines
 
 
 
-## Data Resource column order is different from schema's (`step-6`)
+
+## Data Resource is missing a field (`step-6`)
+
+
+
+## Data Resource column order is different from schema's (`step-7`)
 
 # Misc. Useful Features
 
@@ -303,7 +356,3 @@ The [Python API](https://framework.frictionlessdata.io/docs/tutorials/working-in
 | Data Resource  | [`Resource`](https://framework.frictionlessdata.io/docs/guides/framework/resource-guide) | N/A |
 | Schema  | [`Schema`](https://framework.frictionlessdata.io/docs/guides/framework/schema-guide) | N/A |
 | Field  | [`Field`](https://framework.frictionlessdata.io/docs/guides/framework/field-guide) | N/A |
-
-
-
-
