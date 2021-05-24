@@ -15,15 +15,24 @@
 - Ethan's Frictionless prototypes of Data Converge outputs: https://github.com/eho-tacc/dc_frictionless_prototypes
 - Ethan's Frictionless prototypes of Versioned Datasets: https://github.com/eho-tacc/vdr_frictionless_prototypes
 
-## Setting Up Tutorial Repo
+## Setting Up Tutorial Repository
 
 ```bash
 git clone https://github.com/eho-tacc/frictionless_schema_tutorial.git
 cd frictionless_schema_tutorial
 git checkout step-0
+```
 
-# ...quality of life
+## Quality of Life Commands
+
+```bash
 alias f=frictionless
+```
+
+"What did he do in that slide again?..."
+
+```bash
+git diff 'step-0..step-1'
 ```
 
 ## Iterative Data Validation
