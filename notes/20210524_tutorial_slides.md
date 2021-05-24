@@ -31,16 +31,17 @@ alias f=frictionless
 Approach is similar to test-driven development (TDD) for software
 
 1. Add data or enrich schema
-2. Test (`f validate datapackage.json`) fails
+2. Test (`f validate vdr.table.yaml`) fails
 3. Transform data
-4. `f validate datapackage.json` passes
+4. `f validate vdr.table.yaml` passes
 5. Repeat
 
-# Anatomy of `datapackage.json`
+## Anatomy of a Data Package
 
 ```bash
-cat datapackage.json
-# or
-jq . datapackage.json
+cat vdr.table.yaml
+cat data/stab_scores.csv
 ```
+
+## Write a Simple Schema (`step-1`)
 
