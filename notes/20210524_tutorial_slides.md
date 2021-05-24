@@ -260,9 +260,23 @@ resources:
 
 ## Data Resource is missing a field (`step-5`)
 
+
+
 ## Data Resource column order is different from schema's (`step-6`)
 
 # Misc. Useful Features
+
+## Multiple `paths` for a Data Resource
+
+The following Package definition would concatenate two CSV files. This allows one to describe multiple physical files using a single schema. 
+
+```yaml
+resources:
+  - name: stab_scores
+    path:
+      - data/stab_scores.csv
+      - data/more_stab_scores.csv
+```
 
 ## JSON instead of YAML
 
