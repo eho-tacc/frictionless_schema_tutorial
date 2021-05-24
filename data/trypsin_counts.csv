@@ -1,7 +1,7 @@
-dataset,name,counts0_t,counts1_t,counts2_t,counts3_t,counts4_t,counts5_t,counts6_t
-TwoSix_100K,EEHEE_rd1_0043,19.0,173.0,261.0,5.0,5.0,1.0,0.0
-TwoSix_100K,EEHEE_rd1_0043_sequence_cycled_10,66.0,176.0,534.0,1.0,10.0,0.0,0.0
-TwoSix_100K,EEHEE_rd1_0043_sequence_cycled_20,30.0,156.0,50.0,0.0,3.0,3.0,0.0
-TwoSix_100K,EEHEE_rd1_0043_sequence_cycled_30,10.0,45.0,47.0,0.0,3.0,3.0,0.0
-TwoSix_100K,EEHEE_rd1_0043_sequence_cycled_40,21.0,74.0,197.0,4.0,2.0,1.0,0.0
-TwoSix_100K,EEHEE_rd1_0043_sequence_deletions,10.0,93.0,359.0,4.0,17.0,0.0,3.0
+dataset,name,counts0_t,counts1_t,counts2_t,counts3_t
+TwoSix_100K,EEHEE_rd1_0043,19.0,173.0,261.0,5.0
+TwoSix_100K,EEHEE_rd1_0043_sequence_cycled_10,66.0,176.0,534.0,1.0
+TwoSix_100K,EEHEE_rd1_0043_sequence_cycled_20,30.0,156.0,50.0,0.0
+TwoSix_100K,EEHEE_rd1_0043_sequence_cycled_30,10.0,45.0,47.0,0.0
+TwoSix_100K,EEHEE_rd1_0043_sequence_cycled_40,21.0,74.0,197.0,4.0
+TwoSix_100K,EEHEE_rd1_0043_sequence_deletions,10.0,93.0,359.0,4.0
