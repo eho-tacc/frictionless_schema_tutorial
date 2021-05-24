@@ -81,9 +81,94 @@ resources:
           description: Experimental stability score of the protein
 ```
 
-## Adding more data (`step-2`)
+## Adding another Data Resource (`step-2`)
+
+```bash
+cat data/trypsin_counts.csv
+```
+
+```yaml
+# ...
+resources:
+  - name: stab_scores
+    # ...
+  - name: trypsin_counts
+    path: data/trypsin_counts.csv
+    # ...
+```
+
+## `step-2` continued
+
+We copy the schema from the `stab_scores` resource as a starting point:
+
+```yaml
+# ...
+resources:
+  - name: stab_scores
+    # ...
+  - name: stab_scores
+    path: data/trypsin_counts.csv
+    # ...
+    schema:
+      fields:
+        - name: dataset
+          type: string
+          description: Name of the dataset
+        - name: name
+          type: string
+          description: Name of the protein design
+        - name: stabilityscore
+          type: number
+          description: Experimental stability score of the protein
+```
+
+## `step-2` continued
+
+As expected, this schema fails validation (`f validate vdr.table.yaml`), and we modify the schema to accommodate the new fields:
+
+```yaml
+# ...
+resources:
+  - name: stab_scores
+    # ...
+  - name: stab_scores
+    path: data/trypsin_counts.csv
+    # ...
+    schema:
+      fields:
+        - name: dataset
+          type: string
+          description: Name of the dataset
+        - name: name
+          type: string
+          description: Name of the protein design
+        - name: counts0_t
+          type: number
+          description: FACS counts at lowest concentration of trypsin
+        - name: counts1_t
+          type: number
+          description: FACS counts at lowest concentration of trypsin
+        # ...
+```
+
+The modified schema passes validation:
+
+```bash
+$ f validate vdr.package.yaml
+# -----
+# valid: data/stab_scores.csv
+# -----
+# -----
+# valid: data/trypsin_counts.csv
+# -----
+```
 
 ## Adding Tabular Relations (`step-3`)
+
+Two steps involved in defining a relationship:
+
+1. Add `primaryKey` for both tables
+2. Map `primaryKey` in the lookup table (`stab_scores` here) to a `foreignKey` in the other table (`trypsin_counts`)
 
 ## Adding a Simple Constraint (`step-4`)
 
