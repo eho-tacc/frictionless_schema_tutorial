@@ -10,7 +10,7 @@ resources:
   - name: stab_scores
     path:
       - data/stab_scores.csv
-      - data/more_stab_scores.csv
+      - data/more_stab_scores_transformed.csv
     dialect:
       commentChar: '#'
     encoding: utf-8

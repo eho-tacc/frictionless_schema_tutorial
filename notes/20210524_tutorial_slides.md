@@ -302,12 +302,17 @@ TwoSix_100K,EEHEE_rd1_0043_another1,EEHEE
 
 There are three errors here:
 
-1. The value `EEHEE_rd1_0043` already appears in `data/stab_scores.csv`, resulting in a non-unique primaryKey error. 
-2. `more_stab_scores.csv` is missing cells for field `stabilityscore`. 
-3. `more_stab_scores.csv` has a field `sequence` that is not defined in the schema.
+A. The value `EEHEE_rd1_0043` already appears in `data/stab_scores.csv`, resulting in a non-unique primaryKey error. 
+B. `more_stab_scores.csv` is missing cells for field `stabilityscore`. 
+C. `more_stab_scores.csv` has a field `sequence` that is not defined in the schema.
 
-## `step-5` continued: Pipelines
+## `step-5a`: Pipelines
 
+We could manually edit the physical CSV files, but as an alternative, Frictionless provides a [transformation toolkit](https://framework.frictionlessdata.io/docs/guides/basic-examples#transforming-data). It allows us to write declarative, compostable data transformation pipelines:
+
+```bash
+cat pipelines/more_stab_scores.pipeline.yaml
+```
 
 
 
