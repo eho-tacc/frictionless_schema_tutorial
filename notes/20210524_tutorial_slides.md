@@ -66,9 +66,19 @@ cat vdr.table.yaml
 ```yaml
 # ...
 resources:
-  # ...
-  - schema:
-      primaryKey: {}
+  - name: stab_scores
+    # ...
+    schema:
+      fields:
+        - name: dataset
+          type: string
+          description: Name of the dataset
+        - name: name
+          type: string
+          description: Name of the protein design
+        - name: stabilityscore
+          type: number
+          description: Experimental stability score of the protein
 ```
 
 ## Adding Tabular Relations (`step-2`)

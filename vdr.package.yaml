@@ -7,8 +7,8 @@ keywords:
   - toy
 profile: data-package
 resources:
-  - compression: 'no'
-    name: stab_scores
+  - name: stab_scores
+    compression: 'no'
     path: data/stab_scores.csv
     dialect:
       commentChar: '#'
@@ -16,4 +16,14 @@ resources:
     format: csv
     hashing: md5
     profile: tabular-data-resource
-    schema: {}
+    schema:
+      fields:
+        - name: dataset
+          type: string
+          description: Name of the dataset
+        - name: name
+          type: string
+          description: Name of the protein design
+        - name: stabilityscore
+          type: number
+          description: Experimental stability score of the protein
