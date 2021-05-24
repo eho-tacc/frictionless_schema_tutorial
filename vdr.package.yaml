@@ -39,6 +39,11 @@ resources:
     hashing: md5
     profile: tabular-data-resource
     schema:
+      foreignKeys:
+        - fields: [dataset, name]
+          reference:
+            resource: stab_scores
+            fields: [dataset, name]
       fields:
         - name: dataset
           type: string
@@ -62,6 +67,3 @@ resources:
         - name: counts3_t
           type: number
           description: FACS counts at highest concentration of trypsin
-      primaryKey:
-        - dataset
-        - name

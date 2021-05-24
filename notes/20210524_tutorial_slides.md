@@ -203,8 +203,8 @@ constraint-error  The cell "359.0" in row at position "7" and field "counts2_t" 
 
 Two steps involved in defining a relationship:
 
-1. Add `primaryKey` for both tables
-2. Map `primaryKey` in the lookup table (`stab_scores` here) to a `foreignKey` in the other table (`trypsin_counts`)
+1. Add `primaryKey` for the "lookup" table (`stab_scores` here)
+2. Map `primaryKey` in the lookup table to a `foreignKey` in the other table (`trypsin_counts`)
 
 Full specification available at https://specs.frictionlessdata.io/table-schema/#primary-key
 
@@ -243,14 +243,11 @@ resources:
     schema:
       fields:
       # ...
-      primaryKey:
-        - dataset
-        - name
       foreignKeys:
-        fields: [dataset, name]
-        reference:
-          resource: stab_scores
-          fields: [dataset, name]
+        - fields: [dataset, name]
+          reference:
+            resource: stab_scores
+            fields: [dataset, name]
 ```
 
 ## `step-4` continued
