@@ -13,7 +13,7 @@ resources:
   format: csv
   hashing: md5
   name: stab_scores
-  path: data/TwoSix_100K.csv
+  path: data/stab_scores.csv
   profile: tabular-data-resource
   schema: {}
 version: '1'
