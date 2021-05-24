@@ -224,6 +224,41 @@ resources:
         - name
 ```
 
+## `step-4` continued
+
+Finally, we tell Frictionless that the `dataset` and `name` fields are the same in both Data Resources:
+
+```yaml
+resources:
+  - name: stab_scores
+    path: data/trypsin_counts.csv
+    schema:
+      fields:
+      # ...
+      primaryKey:
+        - dataset
+        - name
+  - name: trypsin_counts
+    path: data/trypsin_counts.csv
+    schema:
+      fields:
+      # ...
+      primaryKey:
+        - dataset
+        - name
+      foreignKeys:
+        fields: [dataset, name]
+        reference:
+          resource: stab_scores
+          fields: [dataset, name]
+```
+
+## `step-4` continued
+
+- We only need to define `foreignKeys` for one Data Resource, not both
+- `trypsin_counts` will "look up" every value for `dataset` and `name` in `stab_scores`
+- Therefore, foreign key values in `stab_scores` must be a superset of values in `trypsin_counts`
+
 # Common Pain Points
 
 ## Data Resource is missing a field (`step-5`)
