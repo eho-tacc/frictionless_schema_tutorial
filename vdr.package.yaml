@@ -1,9 +1,17 @@
 name: sd2e/protein_stability_toy
-version: '1'
+version: "1"
 contributors:
   - Ethan Ho
 keywords:
   - protein stability
   - toy
 profile: data-package
-resources: []
+resources:
+  - name: stab_scores
+    encoding: utf-8
+    format: csv
+    hashing: md5
+    path: data/stab_scores.csv
+    profile: tabular-data-resource
+    schema: {}
+    scheme: file
