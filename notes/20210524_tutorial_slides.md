@@ -19,8 +19,9 @@
 
 Approach is similar to test-driven development (TDD) for software
 
-1. Add data or enrich schema
+1. Add/modify data or metadata
 2. Test (`frictionless validate vdr.package.yaml`) fails
+    - Validates data against schema (metadata)
 3. Transform data
 4. `frictionless validate vdr.package.yaml` passes
 5. Repeat
@@ -28,8 +29,10 @@ Approach is similar to test-driven development (TDD) for software
 ## Install Frictionless CLI
 
 ```bash
-python3 -m pip install --user frictionless
-frictionless --help
+$ python3 -m pip install --user frictionless
+# ...
+$ frictionless --version
+4.2.2
 ```
 
 ## Setting Up Tutorial Repository
@@ -89,7 +92,7 @@ resources:
           description: Experimental stability score of the protein
 ```
 
-We can now validate our package against this schema using:
+We can now validate the data in our Data Package against this schema:
 
 ```bash
 $ f validate vdr.package.yaml
@@ -139,7 +142,7 @@ schema:
 scheme: file
 ```
 
-...and paste the output into the `resources` section of `vdr.package.yaml`:
+...and copy the output into the `resources` section of `vdr.package.yaml`:
 
 ```yaml
 resources:
@@ -254,7 +257,7 @@ As usual, we check for issues, such as uniqueness of `primaryKey` in this case, 
 
 - We only need to define `foreignKeys` for one Data Resource, not both
 - `trypsin_counts` will "look up" every value for `dataset` and `name` in `stab_scores`
-- Therefore, foreign key values in `stab_scores` must be a superset of values in `trypsin_counts`
+- Therefore, foreign key values in `stab_scores` _must_ be a superset of values in `trypsin_counts`
 
 # Common Pain Points
 
@@ -350,7 +353,7 @@ Similarly, we can fix issue C with a `field-add` step:
 
 ## JSON instead of YAML
 
-Instead of `*.package.yaml`, define Package in `datapackage.json`:
+Instead of `*.package.yaml`, one can define a Data Package in `datapackage.json`:
 
 ```bash
 jq . datapackage.json
@@ -358,7 +361,7 @@ jq . datapackage.json
 cat datapackage.json
 ```
 
-## Validate via hash
+## Describe & validate with stats
 
 ```bash
 f describe data/stab_scores.csv --stats
