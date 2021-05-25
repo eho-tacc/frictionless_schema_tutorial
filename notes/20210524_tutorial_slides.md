@@ -344,25 +344,7 @@ Similarly, we can fix issue C with a `field-add` step:
   type: number
 ```
 
-## Data Resource is missing a field (`step-6`)
-
-
-
-## Data Resource column order is different from schema's (`step-7`)
-
 # Misc. Useful Features
-
-## Multiple `paths` for a Data Resource
-
-The following Package definition would concatenate two CSV files. This allows one to describe multiple physical files using a single schema. 
-
-```yaml
-resources:
-  - name: stab_scores
-    path:
-      - data/stab_scores.csv
-      - data/more_stab_scores.csv
-```
 
 ## JSON instead of YAML
 
