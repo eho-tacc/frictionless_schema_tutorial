@@ -11,7 +11,9 @@ resources:
     encoding: utf-8
     format: csv
     hashing: md5
-    path: data/stab_scores.csv
+    path:
+      - data/stab_scores.csv
+      - data/more_stab_scores.csv
     profile: tabular-data-resource
     schema:
       fields:
