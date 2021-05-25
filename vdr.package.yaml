@@ -25,3 +25,24 @@ resources:
           type: number
           description: Experimental stability score of the protein
     scheme: file
+  - name: trypsin_counts
+    encoding: utf-8
+    format: csv
+    hashing: md5
+    path: data/trypsin_counts.csv
+    profile: tabular-data-resource
+    schema:
+      fields:
+        - name: dataset
+          type: string
+        - name: name
+          type: string
+        - name: counts0_t
+          type: number
+        - name: counts1_t
+          type: number
+        - name: counts2_t
+          type: number
+        - name: counts3_t
+          type: number
+    scheme: file
