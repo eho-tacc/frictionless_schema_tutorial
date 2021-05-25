@@ -54,4 +54,9 @@ resources:
           #   maximum: 300.0
         - name: counts3_t
           type: number
+      foreignKeys:
+        - fields: [dataset, name]
+          reference:
+            resource: stab_scores
+            fields: [dataset, name]
     scheme: file
