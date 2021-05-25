@@ -24,6 +24,9 @@ resources:
         - name: stabilityscore
           type: number
           description: Experimental stability score of the protein
+      primaryKey:
+        - dataset
+        - name
     scheme: file
   - name: trypsin_counts
     encoding: utf-8
