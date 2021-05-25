@@ -29,7 +29,6 @@ resources:
       primaryKey:
         - dataset
         - name
-    scheme: file
   - name: trypsin_counts
     encoding: utf-8
     format: csv
