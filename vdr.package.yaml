@@ -13,7 +13,7 @@ resources:
     hashing: md5
     path:
       - data/stab_scores.csv
-      - data/more_stab_scores.csv
+      - data/more_stab_scores_transformed.csv
     profile: tabular-data-resource
     schema:
       fields:
