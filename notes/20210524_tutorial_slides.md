@@ -32,7 +32,7 @@ Approach is similar to test-driven development (TDD) for software
 $ python3 -m pip install --user frictionless
 # ...
 $ frictionless --version
-4.2.2
+4.10.6
 ```
 
 ## Setting Up Tutorial Repository
@@ -58,6 +58,7 @@ git diff 'step-0..step-1'
 "I fell behind; how do I catch up quickly?"
 
 ```bash
+git checkout -- vdr.package.yaml
 git checkout step-4
 ```
 
