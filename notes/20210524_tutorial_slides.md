@@ -8,7 +8,7 @@
 2. Review misc. useful features of Frictionless
 3. BYOD (Bring Your Own Dataset) one-on-one assistance
 
-## Resources to Follow Along
+## Resources
 
 - Repository for this tutorial: https://github.com/eho-tacc/frictionless_schema_tutorial
 - Frictionless Framework documentation: https://framework.frictionlessdata.io/
@@ -20,9 +20,9 @@
 Approach is similar to test-driven development (TDD) for software
 
 1. Add data or enrich schema
-2. Test (`frictionless validate vdr.table.yaml`) fails
+2. Test (`frictionless validate vdr.package.yaml`) fails
 3. Transform data
-4. `frictionless validate vdr.table.yaml` passes
+4. `frictionless validate vdr.package.yaml` passes
 5. Repeat
 
 ## Install Frictionless CLI
@@ -52,16 +52,24 @@ alias f=frictionless
 git diff 'step-0..step-1'
 ```
 
-## Anatomy of a Data Package
-
-Minimum viable Data Package contains just two files: data and metadata
+"I fell behind; how do I catch up quickly?"
 
 ```bash
-cat data/stab_scores.csv
-cat vdr.table.yaml
+git checkout step-4
 ```
 
+## Anatomy of a Data Package
+
+Minimum viable Data Package contains just two files:
+
+1. Data file: `data/stab_scores.csv`
+2. Metadata file: `vdr.package.yaml`
+    - `stab_scores` resource was inferred using `f describe data/stab_scores.csv`
+
 ## Writing a Simple Schema (`step-1`)
+
+- Frictionless schemas allow one to validate data files such as `stab_scores.csv` against the metadata in `vdr.package.yaml`.
+- We can let Frictionless infer a schema using `f describe`, or write one by hand in the `vdr.package.yaml` file:
 
 ```yaml
 # ...
@@ -81,14 +89,59 @@ resources:
           description: Experimental stability score of the protein
 ```
 
+We can now validate our package against this schema using:
+
+```bash
+$ f validate vdr.package.yaml
+# -----
+# valid: data/stab_scores.csv
+# -----
+```
+
+Since the schema defined in the metadata matches the data file, validation passes.
+
 ## Adding another Data Resource (`step-2`)
+
+Let's add another Data Resource to this Data Package. Specifically, we want to add some FACS count data that is contained in another CSV file:
 
 ```bash
 cat data/trypsin_counts.csv
 ```
 
+Instead of writing the schema by hand as we did before, we will let Frictionless generate it for us:
+
+```bash
+$ f describe data/trypsin_counts.csv
+# --------
+# metadata: data/trypsin_counts.csv
+# --------
+
+encoding: utf-8
+format: csv
+hashing: md5
+name: trypsin_counts
+path: data/trypsin_counts.csv
+profile: tabular-data-resource
+schema:
+  fields:
+    - name: dataset
+      type: string
+    - name: name
+      type: string
+    - name: counts0_t
+      type: number
+    - name: counts1_t
+      type: number
+    - name: counts2_t
+      type: number
+    - name: counts3_t
+      type: number
+scheme: file
+```
+
+...and paste the output into the `resources` section of `vdr.package.yaml`:
+
 ```yaml
-# ...
 resources:
   - name: stab_scores
     # ...
@@ -97,70 +150,7 @@ resources:
     # ...
 ```
 
-## `step-2` continued
-
-We copy the schema from the `stab_scores` resource as a starting point:
-
-```yaml
-# ...
-resources:
-  - name: stab_scores
-    # ...
-  - name: stab_scores
-    path: data/trypsin_counts.csv
-    # ...
-    schema:
-      fields:
-        - name: dataset
-          type: string
-          description: Name of the dataset
-        - name: name
-          type: string
-          description: Name of the protein design
-        - name: stabilityscore
-          type: number
-          description: Experimental stability score of the protein
-```
-
-## `step-2` continued
-
-As expected, this schema fails validation (`f validate vdr.table.yaml`), and we modify the schema to accommodate the new fields:
-
-```yaml
-resources:
-  - name: stab_scores
-    # ...
-  - name: stab_scores
-    path: data/trypsin_counts.csv
-    # ...
-    schema:
-      fields:
-        - name: dataset
-          type: string
-          description: Name of the dataset
-        - name: name
-          type: string
-          description: Name of the protein design
-        - name: counts0_t
-          type: number
-          description: FACS counts at lowest concentration of trypsin
-        - name: counts1_t
-          type: number
-          description: FACS counts at lowest concentration of trypsin
-        # ...
-```
-
-The modified schema passes validation:
-
-```bash
-$ f validate vdr.package.yaml
-# -----
-# valid: data/stab_scores.csv
-# -----
-# -----
-# valid: data/trypsin_counts.csv
-# -----
-```
+Finally, we check that the Data Package passes validation with `f validate vdr.package.yaml`
 
 ## Adding a Simple Constraint (`step-3`)
 
@@ -191,20 +181,28 @@ Let's try adding a couple of (failing) constraints on fields `name` and `counts2
 Validation fails as expected:
 
 ```bash
-$ f validate vdr.table.yaml
+$ f validate vdr.package.yaml
 # ...
 constraint-error  The cell "EEHEE_rd1_0043" in row at position "2" and field "name" at position "2" does not conform to a constraint: constraint "pattern" is "^.*sequence.*$"
 constraint-error  The cell "534.0" in row at position "3" and field "counts2_t" at position "5" does not conform to a constraint: constraint "maximum" is "300.0"             
 constraint-error  The cell "359.0" in row at position "7" and field "counts2_t" at position "5" does not conform to a constraint: constraint "maximum" is "300.0" 
 ```
 
+## Exercise: explore validation failure modes
+
+1. Add a new field to the schema that does not exist in the data
+2. Add a new field in the data that does not exist in the schema
+3. Define a `number` type for values that are `string`s in the data
+4. Define a failing `constraint` similar to `step-3` above
+
+_et cetera, et cetera_
 
 ## Adding Tabular Relations (`step-4`)
 
 Two steps involved in defining a relationship:
 
-1. Add `primaryKey` for the "lookup" table (`stab_scores` here)
-2. Map `primaryKey` in the lookup table to a `foreignKey` in the other table (`trypsin_counts`)
+1. Add `primaryKey` for the referenced table (`stab_scores` here)
+2. Map `primaryKey` in the referenced table to a `foreignKey` in the referencing table (`trypsin_counts`)
 
 Full specification available at https://specs.frictionlessdata.io/table-schema/#primary-key
 
@@ -250,7 +248,9 @@ resources:
             fields: [dataset, name]
 ```
 
-## `step-4` continued
+As usual, we check for issues, such as uniqueness of `primaryKey` in this case, using the `validate` command.
+
+## `step-4` continued: comments on `foreignKeys`
 
 - We only need to define `foreignKeys` for one Data Resource, not both
 - `trypsin_counts` will "look up" every value for `dataset` and `name` in `stab_scores`
@@ -260,7 +260,7 @@ resources:
 
 ## Appending data to a Data Resource (`step-5`)
 
-The following Package definition would concatenate two CSV files. This allows one to describe multiple physical files using a single schema. 
+The following Package definition would concatenate two CSV files. This allows one to describe multiple physical files using a single schema. In this case, we want to add more stability scores to the `stab_scores` resource:
 
 ```yaml
 resources:
@@ -300,15 +300,17 @@ TwoSix_100K,EEHEE_rd1_0043,EEHEE
 TwoSix_100K,EEHEE_rd1_0043_another1,EEHEE
 ```
 
-There are three errors here:
+There are **three** errors here:
 
-A. The value `EEHEE_rd1_0043` already appears in `data/stab_scores.csv`, resulting in a non-unique primaryKey error. 
+A. The value `EEHEE_rd1_0043` already appears in the `stab_scores` Data Resource (in `data/stab_scores.csv`), resulting in a non-unique primaryKey error. 
 B. `more_stab_scores.csv` has a field `sequence` that is not defined in the schema.
 C. `more_stab_scores.csv` is missing cells for field `stabilityscore`. 
 
-## `step-5a`: Pipelines
+## `step-5a`: Frictionless Pipelines
 
-We could manually edit the physical CSV files, but as an alternative, Frictionless provides a [transformation toolkit](https://framework.frictionlessdata.io/docs/guides/basic-examples#transforming-data). It allows us to write declarative, compostable data transformation pipelines:
+- We could edit the physical CSV files by hand. 
+- Alternatively, Frictionless provides a [toolkit for transforming data](https://framework.frictionlessdata.io/docs/guides/basic-examples#transforming-data). 
+- It allows us to write declarative, compostable data transformation pipelines:
 
 ```bash
 cat pipelines/more_stab_scores.pipeline.yaml
@@ -358,6 +360,10 @@ cat datapackage.json
 
 ## Validate via hash
 
+```bash
+f describe data/stab_scores.csv --stats
+```
+
 ## Python API
 
 The [Python API](https://framework.frictionlessdata.io/docs/tutorials/working-in-python) supports any entity or operation mentioned thus far:
@@ -371,3 +377,5 @@ The [Python API](https://framework.frictionlessdata.io/docs/tutorials/working-in
 | Data Resource  | [`Resource`](https://framework.frictionlessdata.io/docs/guides/framework/resource-guide) | N/A |
 | Schema  | [`Schema`](https://framework.frictionlessdata.io/docs/guides/framework/schema-guide) | N/A |
 | Field  | [`Field`](https://framework.frictionlessdata.io/docs/guides/framework/field-guide) | N/A |
+
+# Questions
