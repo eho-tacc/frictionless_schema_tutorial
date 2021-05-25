@@ -37,12 +37,18 @@ resources:
           type: string
         - name: name
           type: string
+          description: Name of the protein design
+          constraints:
+            pattern: '^.+sequence.+$'
         - name: counts0_t
           type: number
         - name: counts1_t
           type: number
         - name: counts2_t
           type: number
+          description: FACS counts at high concentration of trypsin
+          constraints:
+            maximum: 300.0
         - name: counts3_t
           type: number
     scheme: file
