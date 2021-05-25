@@ -303,8 +303,8 @@ TwoSix_100K,EEHEE_rd1_0043_another1,EEHEE
 There are three errors here:
 
 A. The value `EEHEE_rd1_0043` already appears in `data/stab_scores.csv`, resulting in a non-unique primaryKey error. 
-B. `more_stab_scores.csv` is missing cells for field `stabilityscore`. 
-C. `more_stab_scores.csv` has a field `sequence` that is not defined in the schema.
+B. `more_stab_scores.csv` has a field `sequence` that is not defined in the schema.
+C. `more_stab_scores.csv` is missing cells for field `stabilityscore`. 
 
 ## `step-5a`: Pipelines
 
@@ -314,7 +314,35 @@ We could manually edit the physical CSV files, but as an alternative, Frictionle
 cat pipelines/more_stab_scores.pipeline.yaml
 ```
 
+Running the pipeline (and pointing our `path` to the output file) resolves the `primary-key-error`:
 
+```bash
+f transform pipelines/step_5.pipeline.yaml
+cat data/more_stab_scores_transformed.csv
+f validate vdr.package.yaml
+```
+
+## `step-5b`
+
+Let us say that we are not interested in including `sequence` in the Data Package. We can remove this column by adding a `field-remove` step to our pipeline, fixing issue B above.
+
+```yaml
+- code: field-remove
+  description: Remove field sequence (step-5b)
+  names: 
+    - sequence
+```
+
+## `step-5c`
+
+Similarly, we can fix issue C with a `field-add` step:
+
+```yaml
+- code: field-add
+  description: Add stabilityscore field (step-5c)
+  name: stabilityscore
+  type: number
+```
 
 ## Data Resource is missing a field (`step-6`)
 

@@ -7,5 +7,14 @@ tasks:
         fieldName: name
         pattern: 'EEHEE_rd1_0043'
         replace: 'EEHEE_rd1_0043_rep2'
+      - code: field-remove
+        description: Remove field sequence (step-5b)
+        names: 
+          - sequence
+      - code: field-add
+        description: Add stabilityscore field (step-5c)
+        name: stabilityscore
+        type: number
       - code: table-write
+        description: Write without overwriting
         path: data/more_stab_scores_transformed.csv
