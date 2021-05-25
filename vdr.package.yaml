@@ -1,5 +1,5 @@
 name: sd2e/protein_stability_toy
-version: "1"
+version: '1'
 contributors:
   - Ethan Ho
 keywords:
@@ -13,5 +13,15 @@ resources:
     hashing: md5
     path: data/stab_scores.csv
     profile: tabular-data-resource
-    schema: {}
+    schema:
+      fields:
+        - name: dataset
+          type: string
+          description: Name of the dataset
+        - name: name
+          type: string
+          description: Name of the protein design
+        - name: stabilityscore
+          type: number
+          description: Experimental stability score of the protein
     scheme: file
