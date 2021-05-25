@@ -273,6 +273,8 @@ resources:
       - data/more_stab_scores.csv
 ```
 
+We also must remove the `scheme: file` line for the `stab_scores` Resource in order to use multiple `path`s, otherwise validation will raise a `task-error`.
+
 ## `step-5` continued
 
 This fails validation and provides some informative error messages:
@@ -316,7 +318,7 @@ C. `more_stab_scores.csv` is missing cells for field `stabilityscore`.
 - It allows us to write declarative, compostable data transformation pipelines:
 
 ```bash
-cat pipelines/more_stab_scores.pipeline.yaml
+cat pipelines/step_5.pipeline.yaml
 ```
 
 Running the pipeline (and pointing our `path` to the output file) resolves the `primary-key-error`:
